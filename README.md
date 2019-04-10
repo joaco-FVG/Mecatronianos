@@ -1,5 +1,4 @@
 # Mecatronianos
-Estudiantes de Ingeniería Mecatronica!!! 
 
 RULES OF THE GROUP:
 
