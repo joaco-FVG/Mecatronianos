@@ -11,5 +11,4 @@ RULES OF THE GROUP:
  - Prohibido hembras (por su  bien). 
  - Prohibido mirarle el bulto al profe con ambos ojos a la vez.
  - Simio no mata simio, pero si a otras especies.
- - El que chamuya se llama Juanma.
-- Traer almohadillas en las nalgas.
+ - Juanma no permitido.
