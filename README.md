@@ -12,3 +12,4 @@ RULES OF THE GROUP:
  - Prohibido mirarle el bulto al profe con ambos ojos a la vez.
  - Simio no mata simio, pero si a otras especies.
  - Juanma no permitido.
+ - Todo aquel que traicione al grupo con algún chamuyo o varios se queda excluido del grupo hasta nuevo aviso.
