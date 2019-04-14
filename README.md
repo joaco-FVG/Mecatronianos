@@ -11,6 +11,5 @@ RULES OF THE GROUP:
  - Prohibido hembras (por su  bien). 
  - Prohibido mirarle el bulto al profe con ambos ojos a la vez.
  - Simio no mata simio, pero si a otras especies.
- - Juanma no permitido.
  - Todo aquel que no sea el único aviso hasta el momento.
  - Todo comentario en el grupo se tomara como verdad absoluta y cualquier broma sarcástica sera castigado haciendo que la broma en si se vuelva verdad.
