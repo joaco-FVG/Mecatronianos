@@ -13,3 +13,4 @@ RULES OF THE GROUP:
  - Simio no mata simio, pero si a otras especies.
  - Todo aquel que no sea el único aviso hasta el momento.
  - Todo comentario en el grupo se tomara como verdad absoluta y cualquier broma sarcástica sera castigado haciendo que la broma en si se vuelva verdad.
+ - El que elimine mensajes debe pagarse un asado para todo el grupo, eso incluye el alcohol y la disposición de su hogar para comer dicho asado.
