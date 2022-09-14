@@ -23,17 +23,31 @@
 //codo 35:1
 //muñeca 55:1
 
+//Motor 2 (45 a 180)
+//Motor 3  
+
 #include <FlexyStepper.h>
                                   //Pasos*Reduccion
-#define K_1               0.5*400    // 12000   //400*30
-#define K_2               0.5*400   // -12000  //400*30
-#define K_3               0.5*400  // -22000  //400*55
-#define K_4               0.5*400 // -14000  //400*35
+#define K_1                 12000   //400*30
+#define K_2                 -12000  //400*30
+#define K_3                 -22000  //400*55
+#define K_4                 -14000  //400*35
 
 #define M1_ENABLE_PIN       38
 #define M2_ENABLE_PIN       56
 #define M3_ENABLE_PIN       62
 #define M4_ENABLE_PIN       24
+
+const int LED_PIN = 13;
+const int MOTOR_E1_STEP_PIN = 30;
+const int MOTOR_E1_DIRECTION_PIN = 31;
+const int MOTOR_E2_STEP_PIN = 32;
+const int MOTOR_E2_DIRECTION_PIN = 33;
+const int MOTOR_E3_STEP_PIN = 34;
+const int MOTOR_E3_DIRECTION_PIN = 35;
+const int MOTOR_E4_STEP_PIN = 36;
+const int MOTOR_E4_DIRECTION_PIN = 37;
+
 
 
 int a_0 = 0;
@@ -45,15 +59,6 @@ int b_1 = 0;
 int c_1 = 0;
 int d_1 = 0;
 
-const int LED_PIN = 13;
-const int MOTOR_E1_STEP_PIN = 54;
-const int MOTOR_E1_DIRECTION_PIN = 55;
-const int MOTOR_E2_STEP_PIN = 60;
-const int MOTOR_E2_DIRECTION_PIN = 61;
-const int MOTOR_E3_STEP_PIN = 46;
-const int MOTOR_E3_DIRECTION_PIN = 48;
-const int MOTOR_E4_STEP_PIN = 26;
-const int MOTOR_E4_DIRECTION_PIN = 28;
 /*
 #define X_STEP_PIN         54
 #define X_DIR_PIN          55
@@ -124,11 +129,23 @@ void loop()
     d = Serial.parseInt();
     e = Serial.parseInt();
     f = Serial.parseInt();
+    
+    
+    if(b < -45 or b > 90 or c < -90 or c > 90)
+    {
+    a = 0;
+    b = 0;
+    c = 0;
+    d = 0;
+    Serial.print("movimiento no permitido");
+    }
+    else
+    {
     a_1=a;
     b_1=b;
     c_1=c;
     d_1=d;
-    a = a - a_0;
+    a = -(a - a_0);
     b = b - b_0;
     c = c - c_0;
     d = d - d_0; 
@@ -149,6 +166,7 @@ void loop()
     Serial.println();
     Serial.print(f);
     Serial.println();
+    }
     while(Serial.available()) Serial.read();
   }
   if(a!=0 || b!=0 || c!=0 || d!=0) {
