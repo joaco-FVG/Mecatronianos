@@ -1,15 +1,17 @@
 from time import sleep
 import time
 import math
-from machine import Pin
-from machine import PWM
 from machine import Pin,UART
+from machine import PWM
 from rp2 import PIO, StateMachine, asm_pio
 from array import array
 from math import pi,sin,exp,sqrt,floor
 from uctypes import addressof
 from random import random
-
+#uart.read()         # read all available characters
+#uart.readline()     # read a line
+#uart.readinto(buf)  # read and store into the given buffer
+#uart.write('abc')   # write the 3 characters
 l_1 = 10 #Altura del brazo
 l_2 = 12 #Largo del hombro
 l_3 = 12 #Largo del brazo
@@ -25,7 +27,9 @@ time = 1 #Tiempo de paso minimo
 sec_accel = 1/3 #Seccion en la que acelera
 MIN = [1500,1500,1650,1500,1150,1200] #Valor minimo del PWM
 MAX = [8000,7200,7950,7700,8000,3600] #Valor maximo del PWM
-pos_in = [90,30,0,90,180,180] #Posicion inicial
+bt_min = [0, 100, 20, 0, 0, 45]
+bt_max = [180, 170, 180, 180, 180, 125]
+pos_in = [90,30,0,90,35,75] #Posicion inicial
 pin_servo = [2,3,4,5,6,7] #Pin servo
 prePos = [] #Posicion anterior
 Pos = [] #Posicion actual
@@ -33,12 +37,10 @@ t_pos = []
 desp = [] #Desplasamiento
 multiplic_pos = [] #Escalar multiplicador del desplasamiento de cada servo
 P_In = [] #Valor de entrada
-LedGPIO = 25
-
 mem_move = []
-
+command = []
+bluetooth = []
 uart = UART(0,9600)
-led = Pin(LedGPIO, Pin.OUT)
 
 for i in range(6): #Defino todos en 90º
     
@@ -55,7 +57,7 @@ def Servo (Number, P, Rango_PWM): #Control de servo
         
         P = 0 if P < 0 else 180
         
-    pos = int(MIN[Rango_PWM] + P * (MAX[Rango_PWM]-MIN[Rango_PWM]) / 180) #Interpolo de 0 a 180 en el minimo y maximo PWM
+    pos = int(MIN[Rango_PWM] + ((P-bt_min[Rango_PWM])*180/(bt_max[Rango_PWM]-bt_min[Rango_PWM])) * (MAX[Rango_PWM]-MIN[Rango_PWM]) / 180) #Interpolo de 0 a 180 en el minimo y maximo PWM
     Pwm = PWM(Pin(Number)) #Atach Servo
     Pwm.freq(Freq) #Defino frecuencia del PWM
     Pwm.duty_u16(pos) #Defino la posicion del servo
@@ -63,7 +65,7 @@ def Servo (Number, P, Rango_PWM): #Control de servo
 
 for i in range(6): #Defino todos los servos en 90º
     
-        Servo (pin_servo[i],pos_in[i],i)
+        Servo (pin_servo[i],((pos_in[i]*(bt_max[i]-bt_min[i])/180)+bt_min[i]),i)
 
 def Posicion(x, y, z): #Calculo en angulo del servo
     
